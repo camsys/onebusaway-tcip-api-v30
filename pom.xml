@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>onebusaway-tcip-apis</artifactId>
+    <groupId>org.onebusaway</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>org.onebusaway</groupId>
+  <artifactId>onebusaway-tcip-api-v30</artifactId>
+  <packaging>jar</packaging>
+  <name>onebusaway-tcip-api-v30</name>
+<!--   <repositories>
+    <repository>
+      <id>java.net</id>
+      <name>java.net Maven Repository</name>
+      <url>https://maven-repository.dev.java.net/nonav/repository</url>
+      <layout>legacy</layout>
+    </repository>
+  </repositories>
+ -->  <dependencies>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.0</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.11.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+<!--         <configuration>
+          <schemaDirectory>src/main/resources</schemaDirectory>
+          <schemaIncludes>
+            <include>TCIP_4_0_0_Final.xsd</include>
+ -->            <!-- 
+              Having this be in an `x` subfolder is a workaround; might be better to have a more reliable method.
+              See http://stackoverflow.com/questions/27026057/maven-jaxb2-plugin-how-to-accomplish-this-xjc-command-line-in-the-pom-xml
+            -->
+<!--             <include>x/ObaCcLocationReport.xsd</include>
+          </schemaIncludes>
+          <bindingDirectory>src/main/resources/local</bindingDirectory>
+          <bindingIncludes>
+ -->            <!-- Handles nested-class issues in the LRMS schemas; see the .xjb for more detail. -->
+<!--             <include>rename.xjb</include>
+          </bindingIncludes>
+        </configuration>
+ -->      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
